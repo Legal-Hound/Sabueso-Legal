@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabueso Legal — Defensa Estratégica para Víctimas | Bogotá</title>
+    <link rel="icon" type="image/png" href="assets/Sabueso%20Legal/Favicon%20Mockup.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy:       #07101F;
+            --navy-mid:   #0C1A30;
+            --navy-light: #152040;
+            --gold:       #C9A84C;
+            --gold-light: #E4C46A;
+            --gold-dim:   rgba(201, 168, 76, 0.12);
+            --white:      #F4EFE4;
+            --gray:       #8A9AB8;
+            --ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--navy);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--navy); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1.8rem 5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.4s var(--ease), padding 0.4s var(--ease), border-color 0.4s var(--ease);
+            border-bottom: 1px solid transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(7, 16, 31, 0.94);
+            backdrop-filter: blur(18px);
+            padding: 1.1rem 5rem;
+            border-bottom-color: rgba(201, 168, 76, 0.18);
+        }
+
+        .nav-logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .nav-logo img {
+            height: 38px;
+            width: auto;
+            display: block;
+            transition: opacity 0.3s;
+        }
+        .nav-logo img:hover { opacity: 0.85; }
+
+        .nav-links {
+            display: flex;
+            gap: 2.8rem;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-cta {
+            border: 1px solid var(--gold) !important;
+            color: var(--gold) !important;
+            padding: 0.55rem 1.4rem;
+            border-radius: 2px;
+            transition: background 0.3s, color 0.3s !important;
+        }
+        .nav-cta:hover {
+            background: var(--gold) !important;
+            color: var(--navy) !important;
+        }
+
+        /* ── HERO ── */
+        #inicio {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 7rem 5rem 5rem;
+        }
+
+        .hero-bg {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 70% 70% at 15% 55%, rgba(201,168,76,0.07) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 60% at 90% 10%, rgba(12,26,48,0.8) 0%, transparent 55%),
+                linear-gradient(150deg, #07101F 0%, #0C1A30 55%, #07101F 100%);
+        }
+
+        .hero-grid {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(201,168,76,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201,168,76,0.035) 1px, transparent 1px);
+            background-size: 64px 64px;
+            will-change: transform;
+        }
+
+        /* Decorative diagonal lines */
+        .hero-lines {
+            position: absolute; inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .hero-lines::before,
+        .hero-lines::after {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 60vh;
+            background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.25), transparent);
+        }
+        .hero-lines::before { left: 5rem; top: 15%; }
+        .hero-lines::after  { right: 5rem; top: 25%; }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 860px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            border: 1px solid rgba(201,168,76,0.35);
+            color: var(--gold);
+            font-size: 0.68rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            padding: 0.5rem 1.6rem;
+            margin-bottom: 2.8rem;
+            border-radius: 2px;
+        }
+        .hero-badge::before,
+        .hero-badge::after {
+            content: '·';
+            opacity: 0.5;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.2rem, 9vw, 6.5rem);
+            font-weight: 900;
+            line-height: 1.04;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+        .hero-title em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .hero-secondary {
+            font-size: clamp(1rem, 2.4vw, 1.3rem);
+            color: var(--gold);
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            margin-bottom: 1.2rem;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-sub {
+            font-size: clamp(0.85rem, 1.8vw, 1rem);
+            color: var(--gray);
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            line-height: 1.9;
+            margin-bottom: 3.5rem;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-sub strong { color: var(--white); font-weight: 600; }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 1rem 2.8rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.35s var(--ease);
+            border-radius: 2px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(201,168,76,0.28);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1rem 2.8rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,0.18);
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.35s var(--ease);
+            border-radius: 2px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .btn-secondary:hover {
+            border-color: rgba(255,255,255,0.6);
+            transform: translateY(-3px);
+        }
+
+        .hero-scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            color: rgba(138,154,184,0.5);
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            animation: hintBounce 2.2s ease-in-out infinite;
+        }
+        .hero-scroll-hint::after {
+            content: '';
+            width: 1px;
+            height: 44px;
+            background: linear-gradient(to bottom, rgba(201,168,76,0.4), transparent);
+        }
+        @keyframes hintBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50%       { transform: translateX(-50%) translateY(7px); }
+        }
+
+        /* ── SHARED SECTION STYLES ── */
+        .section-wrap {
+            padding: 8rem 5rem;
+        }
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-label {
+            font-size: 0.68rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 1rem;
+        }
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+        .section-title em { font-style: italic; color: var(--gold); }
+
+        .gold-rule {
+            width: 52px;
+            height: 2px;
+            background: var(--gold);
+            margin-bottom: 3.5rem;
+        }
+
+        /* ── NOSOTROS ── */
+        #nosotros { background: var(--navy); }
+
+        .nosotros-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7rem;
+            align-items: center;
+        }
+
+        .nosotros-text p {
+            color: var(--gray);
+            line-height: 1.95;
+            margin-bottom: 1.4rem;
+            font-size: 0.93rem;
+        }
+        .nosotros-text p strong { color: var(--white); }
+
+        .availability-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            margin-top: 0.5rem;
+            color: var(--gold);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+        }
+        .pulse-dot {
+            width: 8px; height: 8px;
+            background: #3ECA72;
+            border-radius: 50%;
+            flex-shrink: 0;
+            animation: pulseDot 2s ease-in-out infinite;
+        }
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(62,202,114,0.4); }
+            50%       { opacity: 0.7; box-shadow: 0 0 0 6px rgba(62,202,114,0); }
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3.5rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(201,168,76,0.12);
+        }
+        .stat { text-align: center; }
+        .stat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        .stat-lbl {
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            color: var(--gray);
+            text-transform: uppercase;
+        }
+
+        /* Team photo */
+        .team-photo {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            border: 1px solid rgba(201,168,76,0.15);
+        }
+
+        /* ── ÁREAS ── */
+        #areas { background: var(--navy-mid); }
+
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 0;
+        }
+
+        .area-card {
+            background: var(--navy);
+            border: 1px solid rgba(201,168,76,0.13);
+            padding: 3.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.4s var(--ease), transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+        }
+        .area-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), rgba(201,168,76,0));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s var(--ease);
+        }
+        .area-card::after {
+            content: '';
+            position: absolute;
+            bottom: -40px; right: -40px;
+            width: 120px; height: 120px;
+            background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+            transition: opacity 0.4s;
+            opacity: 0;
+        }
+        .area-card:hover {
+            border-color: rgba(201,168,76,0.35);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .area-card:hover::before { transform: scaleX(1); }
+        .area-card:hover::after { opacity: 1; }
+
+        .area-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            font-weight: 900;
+            color: rgba(201,168,76,0.07);
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        .area-icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+        .area-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.65rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            line-height: 1.25;
+        }
+        .area-desc {
+            color: var(--gray);
+            line-height: 1.85;
+            font-size: 0.88rem;
+            margin-bottom: 2.2rem;
+        }
+        .area-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .tag {
+            border: 1px solid rgba(201,168,76,0.25);
+            color: var(--gold);
+            font-size: 0.62rem;
+            letter-spacing: 0.1em;
+            padding: 0.3rem 0.85rem;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .area-card:hover .tag {
+            background: rgba(201,168,76,0.06);
+            border-color: rgba(201,168,76,0.4);
+        }
+
+        /* ── PROCESO ── */
+        #proceso { background: var(--navy); }
+
+        .proceso-steps {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0;
+            margin-top: 5rem;
+            position: relative;
+        }
+        .proceso-steps::before {
+            content: '';
+            position: absolute;
+            top: 1.9rem;
+            left: calc(10% + 0.5px);
+            right: calc(10% + 0.5px);
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold) 0%, rgba(201,168,76,0.2) 50%, var(--gold) 100%);
+        }
+
+        .step {
+            text-align: center;
+            padding: 0 2rem;
+        }
+        .step-num {
+            width: 3.8rem; height: 3.8rem;
+            border: 1.5px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2.2rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gold);
+            background: var(--navy);
+            position: relative;
+            z-index: 1;
+            transition: background 0.3s, color 0.3s;
+        }
+        .step:hover .step-num {
+            background: var(--gold);
+            color: var(--navy);
+        }
+        .step-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .step-desc {
+            color: var(--gray);
+            font-size: 0.84rem;
+            line-height: 1.75;
+        }
+
+        /* ── CONTACTO ── */
+        #contacto { background: var(--navy-mid); }
+
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7rem;
+        }
+
+        .contacto-left p {
+            color: var(--gray);
+            line-height: 1.85;
+            margin-bottom: 2.5rem;
+            font-size: 0.92rem;
+        }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.1rem;
+        }
+        .c-icon {
+            color: var(--gold);
+            font-size: 1rem;
+            margin-top: 0.15rem;
+            flex-shrink: 0;
+            width: 1.4rem;
+            text-align: center;
+        }
+        .c-body {}
+        .c-label {
+            font-size: 0.62rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.25rem;
+        }
+        .c-value {
+            font-size: 0.92rem;
+            line-height: 1.5;
+            color: var(--white);
+        }
+        .c-value a { color: var(--white); text-decoration: none; }
+        .c-value a:hover { color: var(--gold); }
+        .c-gold a { color: var(--gold); text-decoration: none; }
+        .c-gold a:hover { color: var(--gold-light); }
+
+        /* Form */
+        .contact-form {
+            background: var(--navy);
+            border: 1px solid rgba(201,168,76,0.13);
+            padding: 3rem;
+        }
+        .form-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2.2rem;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+        .form-group { margin-bottom: 1.4rem; }
+        .form-group label {
+            display: block;
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 0.55rem;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            background: var(--navy-mid);
+            border: 1px solid rgba(201,168,76,0.18);
+            color: var(--white);
+            padding: 0.85rem 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.88rem;
+            outline: none;
+            transition: border-color 0.3s;
+            border-radius: 2px;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--gold);
+        }
+        .form-group select option { background: var(--navy-mid); }
+        .form-group textarea { height: 110px; resize: vertical; }
+
+        .form-submit {
+            width: 100%;
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            padding: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.35s var(--ease);
+            border-radius: 2px;
+        }
+        .form-submit:hover {
+            background: var(--gold-light);
+            box-shadow: 0 8px 30px rgba(201,168,76,0.25);
+        }
+
+        /* ── WHATSAPP CTA ── */
+        .wa-block {
+            margin-bottom: 2rem;
+        }
+        .wa-eyebrow {
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            color: var(--gray);
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 1.2rem;
+        }
+        .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            width: 100%;
+            padding: 1.15rem 2rem;
+            background: var(--gold);
+            color: var(--navy);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: all 0.35s var(--ease);
+            position: relative;
+        }
+        .btn-whatsapp:hover {
+            background: var(--gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(201,168,76,0.28), 0 4px 16px rgba(201,168,76,0.15);
+        }
+        .btn-whatsapp svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+        .wa-note {
+            text-align: center;
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            color: rgba(138,154,184,0.5);
+            margin-top: 0.75rem;
+        }
+        .form-divider {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .form-divider::before,
+        .form-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(201,168,76,0.13);
+        }
+        .form-divider span {
+            font-size: 0.6rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(138,154,184,0.45);
+            white-space: nowrap;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #030B16;
+            padding: 2.5rem 5rem;
+            border-top: 1px solid rgba(201,168,76,0.12);
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .footer-logo span { color: var(--gold); }
+        .footer-copy {
+            font-size: 0.72rem;
+            color: rgba(138,154,184,0.6);
+            letter-spacing: 0.05em;
+            text-align: center;
+        }
+        .footer-social a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 0.45rem 1.1rem;
+            border-radius: 2px;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .footer-social a:hover { color: var(--gold); border-color: var(--gold); }
+
+        /* ── SCROLL ANIMATIONS ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+        }
+        .reveal.in { opacity: 1; transform: none; }
+
+        .reveal-l {
+            opacity: 0;
+            transform: translateX(-36px);
+            transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+        }
+        .reveal-l.in { opacity: 1; transform: none; }
+
+        .reveal-r {
+            opacity: 0;
+            transform: translateX(36px);
+            transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+        }
+        .reveal-r.in { opacity: 1; transform: none; }
+
+        .stagger > * {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+        }
+        .stagger.in > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0s; }
+        .stagger.in > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.13s; }
+        .stagger.in > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.26s; }
+        .stagger.in > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.39s; }
+        .stagger.in > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.52s; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            nav { padding: 1.2rem 1.5rem; }
+            nav.scrolled { padding: 0.9rem 1.5rem; }
+            .nav-links { display: none; }
+
+            .section-wrap { padding: 5rem 1.5rem; }
+            #inicio { padding: 6rem 1.5rem 4rem; }
+
+            .nosotros-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .photo-placeholder { aspect-ratio: 16/9; }
+            .stats-row { gap: 1rem; }
+
+            .areas-grid { grid-template-columns: 1fr; }
+
+            .proceso-steps { grid-template-columns: 1fr 1fr; gap: 3rem; }
+            .proceso-steps > *:last-child { grid-column: span 2; max-width: 280px; margin: 0 auto; }
+            .proceso-steps::before { display: none; }
+
+            .contacto-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .contact-form { padding: 2rem 1.5rem; }
+            .form-row { grid-template-columns: 1fr; }
+
+            footer { padding: 2rem 1.5rem; }
+            .footer-inner { flex-direction: column; text-align: center; gap: 1.2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title { font-size: 2.8rem; }
+            .proceso-steps { grid-template-columns: 1fr; }
+            .stats-row { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav id="navbar">
+    <a href="#inicio" class="nav-logo">
+        <img src="assets/Sabueso%20Legal/Logo%20SVG.png" alt="Sabueso Legal">
+    </a>
+    <ul class="nav-links">
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#areas">Áreas</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+    </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="inicio">
+    <div class="hero-bg"></div>
+    <div class="hero-grid" id="heroGrid"></div>
+    <div class="hero-lines"></div>
+
+    <div class="hero-content">
+        <div class="hero-badge">Firma Boutique · Bogotá D.C.</div>
+        <h1 class="hero-title">
+            Defensa estratégica<br>para <em>víctimas</em> en<br>procesos complejos
+        </h1>
+        <p class="hero-secondary">Enfoque en derecho penal patrimonial y fraude financiero</p>
+        <p class="hero-sub">
+            Estructuramos y ejecutamos estrategias de investigación y representación jurídica con precisión.
+        </p>
+        <div class="hero-actions">
+            <a href="#contacto" class="btn-primary">Solicitar consulta</a>
+            <a href="#areas" class="btn-secondary">Nuestras áreas</a>
+        </div>
+    </div>
+
+    <div class="hero-scroll-hint">Scroll</div>
+</section>
+
+<!-- ── NOSOTROS ── -->
+<div id="nosotros" class="section-wrap">
+    <div class="section-inner">
+        <div class="nosotros-grid">
+
+            <div class="nosotros-text reveal-l">
+                <span class="section-label">Quiénes somos</span>
+                <h2 class="section-title">Una firma construida<br>para <em>defender</em> a las víctimas</h2>
+                <div class="gold-rule"></div>
+
+                <p><strong>Sabueso Legal</strong> es una firma boutique de abogados con sede en Bogotá, especializada en representar a quienes han sufrido delitos contra su patrimonio. Rastreamos, documentamos y perseguimos cada caso con la tenacidad que define nuestro nombre.</p>
+                <p>Nos distingue un enfoque <strong>estratégico y estrictamente personalizado</strong>: cada cliente trabaja directamente con abogados expertos. Conocemos en profundidad el sistema penal colombiano y lo convertimos en tu ventaja.</p>
+                <p>Estamos disponibles <strong>24 horas, 7 días a la semana</strong>, porque los delitos financieros no tienen horario, y tu defensa tampoco puede esperar.</p>
+
+                <div class="availability-pill">
+                    <span class="pulse-dot"></span>
+                    Disponibles ahora · 24/7
+                </div>
+
+                <div class="stats-row stagger">
+                    <div class="stat">
+                        <span class="stat-num" data-target="100">0</span>
+                        <span class="stat-lbl">% Dedicación</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num" data-target="24">0</span>
+                        <span class="stat-lbl">Horas disponibles</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num" data-target="3">0</span>
+                        <span class="stat-lbl">Áreas de enfoque</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nosotros-visual reveal-r">
+                <img src="assets/Sabueso%20Legal/foto-equipo.png" alt="Sabueso Legal" class="team-photo">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ── ÁREAS DE PRÁCTICA ── -->
+<div id="areas" class="section-wrap">
+    <div class="section-inner">
+        <div class="reveal">
+            <span class="section-label">Especialización</span>
+            <h2 class="section-title">Áreas de <em>práctica</em></h2>
+            <div class="gold-rule"></div>
+        </div>
+
+        <div class="areas-grid stagger">
+            <div class="area-card">
+                <span class="area-num">01</span>
+                <span class="area-icon">⚖️</span>
+                <h3 class="area-title">Derecho Penal Patrimonial</h3>
+                <p class="area-desc">Representamos a víctimas de delitos que afectan directamente su patrimonio económico. Construimos estrategias jurídicas sólidas orientadas a la recuperación del daño y a la sanción efectiva de los responsables dentro del sistema penal colombiano.</p>
+                <div class="area-tags">
+                    <span class="tag">Representación de víctimas</span>
+                    <span class="tag">Estafa</span>
+                    <span class="tag">Hurto</span>
+                    <span class="tag">Extorsión</span>
+                    <span class="tag">Daño patrimonial</span>
+                </div>
+            </div>
+
+            <div class="area-card">
+                <span class="area-num">02</span>
+                <span class="area-icon">🔍</span>
+                <h3 class="area-title">Fraude Financiero</h3>
+                <p class="area-desc">Área dedicada exclusivamente a la investigación y litigio en casos de fraude en el ámbito financiero. Actuamos con rapidez para proteger a nuestros clientes, rastrear el origen del daño y perseguir a los responsables por todas las vías legales disponibles.</p>
+                <div class="area-tags">
+                    <span class="tag">Fraude bancario</span>
+                    <span class="tag">Inversiones fraudulentas</span>
+                    <span class="tag">Estafas digitales</span>
+                    <span class="tag">Captación ilegal</span>
+                    <span class="tag">Lavado de activos</span>
+                </div>
+            </div>
+
+            <div class="area-card">
+                <span class="area-num">03</span>
+                <span class="area-icon">🏢</span>
+                <h3 class="area-title">Acompañamiento Corporativo</h3>
+                <p class="area-desc">Asesoramos a empresas en la protección activa de su patrimonio frente a amenazas internas y externas. Diseñamos esquemas de prevención, detección temprana y respuesta jurídica ante conductas que pongan en riesgo sus activos o su estabilidad financiera.</p>
+                <div class="area-tags">
+                    <span class="tag">Protección patrimonial</span>
+                    <span class="tag">Auditoría jurídica</span>
+                    <span class="tag">Prevención de fraude</span>
+                    <span class="tag">Due diligence</span>
+                    <span class="tag">Respuesta a incidentes</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── PROCESO ── -->
+<div id="proceso" class="section-wrap">
+    <div class="section-inner">
+        <div class="reveal">
+            <span class="section-label">Cómo trabajamos</span>
+            <h2 class="section-title">Tu caso,<br><em>paso a paso</em></h2>
+            <div class="gold-rule"></div>
+        </div>
+
+        <div class="proceso-steps stagger">
+            <div class="step">
+                <div class="step-num">01</div>
+                <h3 class="step-title">Consulta inicial</h3>
+                <p class="step-desc">Nos contactas a cualquier hora. Escuchamos tu situación, la analizamos sin compromiso y te explicamos qué opciones tienes.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">02</div>
+                <h3 class="step-title">Evaluación del caso</h3>
+                <p class="step-desc">Revisamos la evidencia disponible, identificamos a los responsables y determinamos la viabilidad jurídica de la acción penal.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">03</div>
+                <h3 class="step-title">Investigación</h3>
+                <p class="step-desc">Realizamos un proceso estructurado de recolección y análisis de información: trazabilidad de activos, identificación de flujos y construcción del mapa probatorio.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">04</div>
+                <h3 class="step-title">Estrategia legal</h3>
+                <p class="step-desc">Diseñamos una hoja de ruta personalizada con objetivos claros: recuperación del daño y sanción efectiva de los responsables.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">05</div>
+                <h3 class="step-title">Representación activa</h3>
+                <p class="step-desc">Te acompañamos en cada instancia del proceso. Litigamos con determinación hasta obtener el resultado que mereces.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── CONTACTO ── -->
+<div id="contacto" class="section-wrap">
+    <div class="section-inner">
+        <div class="contacto-grid">
+
+            <div class="contacto-left reveal-l">
+                <span class="section-label">Hablemos</span>
+                <h2 class="section-title">Tu caso no puede esperar,<br><em>nosotros tampoco</em></h2>
+                <div class="gold-rule"></div>
+                <p>Contáctanos ahora. Estamos disponibles las 24 horas porque entendemos que cuando tu patrimonio está en riesgo, cada hora cuenta.</p>
+
+                <div class="contact-list">
+                    <div class="contact-item">
+                        <span class="c-icon">📞</span>
+                        <div class="c-body">
+                            <div class="c-label">Teléfono · WhatsApp</div>
+                            <div class="c-value"><a href="tel:3008633222">300 863 3222</a></div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="c-icon">📧</span>
+                        <div class="c-body">
+                            <div class="c-label">Correo electrónico</div>
+                            <div class="c-value"><a href="mailto:a.zornosatorres@gmail.com">a.zornosatorres@gmail.com</a></div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="c-icon">📍</span>
+                        <div class="c-body">
+                            <div class="c-label">Ciudad</div>
+                            <div class="c-value">Bogotá D.C., Colombia</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="c-icon">🕐</span>
+                        <div class="c-body">
+                            <div class="c-label">Disponibilidad</div>
+                            <div class="c-value">24 horas · 7 días a la semana</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="c-icon">📸</span>
+                        <div class="c-body c-gold">
+                            <div class="c-label">Instagram</div>
+                            <div class="c-value"><a href="https://instagram.com/sabueso.legal" target="_blank">@sabueso.legal</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal-r">
+
+                <!-- WhatsApp CTA principal -->
+                <div class="wa-block">
+                    <p class="wa-eyebrow">Respuesta directa. Evaluación inicial de tu caso.</p>
+                    <a href="https://wa.me/573008633222?text=Hola%2C%20quiero%20consultar%20sobre%20mi%20caso."
+                       target="_blank"
+                       rel="noopener"
+                       class="btn-whatsapp">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                        </svg>
+                        Hablar por WhatsApp ahora
+                    </a>
+                    <p class="wa-note">Disponible 24/7 · Respuesta en minutos</p>
+                </div>
+
+                <div class="form-divider"><span>o escríbenos</span></div>
+
+                <div class="contact-form">
+                    <h3 class="form-heading">Cuéntanos tu caso</h3>
+                    <form onsubmit="handleForm(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nombre completo</label>
+                                <input type="text" placeholder="Tu nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Teléfono</label>
+                                <input type="tel" placeholder="300 000 0000" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Área de consulta</label>
+                            <select>
+                                <option value="">Selecciona el área</option>
+                                <option>Derecho Penal Patrimonial</option>
+                                <option>Fraude Financiero</option>
+                                <option>Acompañamiento Corporativo</option>
+                                <option>No sé con seguridad</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Describe brevemente tu situación</label>
+                            <textarea placeholder="Cuéntanos lo que ocurrió..."></textarea>
+                        </div>
+                        <button type="submit" class="form-submit" id="formBtn">Enviar consulta</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-logo">
+            <img src="assets/Sabueso%20Legal/Logo%20SVG.png" alt="Sabueso Legal" style="height:32px;width:auto;display:block;opacity:0.85;">
+        </div>
+        <p class="footer-copy">© 2026 Sabueso Legal · Bogotá D.C., Colombia · Todos los derechos reservados</p>
+        <div class="footer-social">
+            <a href="https://instagram.com/sabueso.legal" target="_blank">@sabueso.legal</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+// ── Nav scroll effect
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 70);
+}, { passive: true });
+
+// ── Parallax on hero grid
+const heroGrid = document.getElementById('heroGrid');
+window.addEventListener('scroll', () => {
+    heroGrid.style.transform = `translateY(${window.scrollY * 0.28}px)`;
+}, { passive: true });
+
+// ── Intersection Observer — reveal animations
+const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            revealObs.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.14 });
+
+document.querySelectorAll('.reveal, .reveal-l, .reveal-r, .stagger').forEach(el => revealObs.observe(el));
+
+// ── Counter animation
+function runCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    const start = performance.now();
+    (function tick(now) {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+    })(start);
+}
+
+const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.querySelectorAll('[data-target]').forEach(runCounter);
+            counterObs.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.stats-row').forEach(el => counterObs.observe(el));
+
+// ── Form feedback
+function handleForm(e) {
+    e.preventDefault();
+    const btn = document.getElementById('formBtn');
+    btn.textContent = '✓ Consulta enviada';
+    btn.style.cssText = 'background:#3ECA72;color:#fff;';
+    setTimeout(() => {
+        btn.textContent = 'Enviar consulta';
+        btn.style.cssText = '';
+        e.target.reset();
+    }, 3000);
+}
+</script>
+</body>
+</html>
