@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5HK7Z9RL');</script>
+    <!-- End Google Tag Manager -->
+
     <title>Sabueso Legal — Defensa Estratégica para Víctimas | Bogotá</title>
     <link rel="icon" type="image/png" href="assets/Sabueso%20Legal/Favicon%20Mockup.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -830,6 +839,10 @@
     </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HK7Z9RL"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- ── NAVIGATION ── -->
 <nav id="navbar">
@@ -1021,7 +1034,7 @@
                         <span class="c-icon">📞</span>
                         <div class="c-body">
                             <div class="c-label">Teléfono · WhatsApp</div>
-                            <div class="c-value"><a href="tel:3008633222">300 863 3222</a></div>
+                            <div class="c-value"><a href="tel:+573008633222">300 863 3222</a></div>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -1076,20 +1089,21 @@
 
                 <div class="contact-form">
                     <h3 class="form-heading">Cuéntanos tu caso</h3>
-                    <form onsubmit="handleForm(event)">
+                    <form id="contactForm">
+                        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;">
                         <div class="form-row">
                             <div class="form-group">
                                 <label>Nombre completo</label>
-                                <input type="text" placeholder="Tu nombre" required>
+                                <input type="text" name="name" placeholder="Tu nombre" required>
                             </div>
                             <div class="form-group">
                                 <label>Teléfono</label>
-                                <input type="tel" placeholder="300 000 0000" required>
+                                <input type="tel" name="phone" placeholder="300 000 0000" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Área de consulta</label>
-                            <select>
+                            <select name="area">
                                 <option value="">Selecciona el área</option>
                                 <option>Derecho Penal Patrimonial</option>
                                 <option>Fraude Financiero</option>
@@ -1099,7 +1113,7 @@
                         </div>
                         <div class="form-group">
                             <label>Describe brevemente tu situación</label>
-                            <textarea placeholder="Cuéntanos lo que ocurrió..."></textarea>
+                            <textarea name="message" placeholder="Cuéntanos lo que ocurrió..."></textarea>
                         </div>
                         <button type="submit" class="form-submit" id="formBtn">Enviar consulta</button>
                     </form>
@@ -1173,17 +1187,55 @@ const counterObs = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.stats-row').forEach(el => counterObs.observe(el));
 
-// ── Form feedback
-function handleForm(e) {
-    e.preventDefault();
-    const btn = document.getElementById('formBtn');
-    btn.textContent = '✓ Consulta enviada';
-    btn.style.cssText = 'background:#3ECA72;color:#fff;';
-    setTimeout(() => {
-        btn.textContent = 'Enviar consulta';
-        btn.style.cssText = '';
-        e.target.reset();
-    }, 3000);
+// ── Form submission (Formspree)
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    const FORM_ENDPOINT = 'https://formspree.io/f/mrpgapla';
+    const formBtn = document.getElementById('formBtn');
+    const formBtnDefaultText = formBtn.textContent;
+
+    contactForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // Honeypot — if filled, it's a bot: silently drop, never call Formspree
+        const honeypot = contactForm.querySelector('input[name="_gotcha"]');
+        if (honeypot && honeypot.value) {
+            return;
+        }
+
+        if (formBtn.disabled) return; // prevent double submit
+
+        formBtn.disabled = true;
+        formBtn.textContent = 'Enviando...';
+        formBtn.style.cssText = '';
+
+        try {
+            const response = await fetch(FORM_ENDPOINT, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (!response.ok) throw new Error('Formspree error response');
+
+            formBtn.textContent = '✓ Consulta enviada';
+            formBtn.style.cssText = 'background:#3ECA72;color:#fff;';
+            contactForm.reset();
+            setTimeout(() => {
+                formBtn.textContent = formBtnDefaultText;
+                formBtn.style.cssText = '';
+                formBtn.disabled = false;
+            }, 3000);
+        } catch (err) {
+            formBtn.textContent = 'Error al enviar. Inténtalo de nuevo.';
+            formBtn.style.cssText = 'background:#E5484D;color:#fff;';
+            formBtn.disabled = false;
+            setTimeout(() => {
+                formBtn.textContent = formBtnDefaultText;
+                formBtn.style.cssText = '';
+            }, 4000);
+        }
+    });
 }
 </script>
 </body>
