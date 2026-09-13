@@ -13,10 +13,12 @@
     <!-- End Google Tag Manager -->
 
     <title>Sabueso Legal — Defensa Estratégica para Víctimas | Bogotá</title>
-    <link rel="icon" type="image/png" href="assets/Sabueso%20Legal/Favicon%20Mockup.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/Sabueso%20Legal/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/Sabueso%20Legal/favicon-180x180.png">
+    <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -32,7 +34,11 @@
             --ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) var(--navy);
+        }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -104,6 +110,40 @@
         .nav-cta:hover {
             background: var(--gold) !important;
             color: var(--navy) !important;
+        }
+
+        /* ── NAV TOGGLE (mobile hamburger) ── */
+        .nav-toggle {
+            display: none;
+            width: 2.75rem;
+            height: 2.75rem;
+            background: transparent;
+            border: 1px solid rgba(201,168,76,0.35);
+            border-radius: 2px;
+            padding: 0;
+            cursor: pointer;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: border-color 0.3s;
+        }
+        .nav-toggle:hover { border-color: rgba(201,168,76,0.6); }
+        .nav-toggle-bar {
+            display: block;
+            width: 1.2rem;
+            height: 1.5px;
+            background: var(--gold);
+            transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+        }
+        .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+            transform: translateY(6.5px) rotate(45deg);
+        }
+        .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+            transform: translateY(-6.5px) rotate(-45deg);
         }
 
         /* ── HERO ── */
@@ -234,7 +274,7 @@
             display: inline-block;
             transition: all 0.35s var(--ease);
             border-radius: 2px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
         .btn-primary:hover {
             background: var(--gold-light);
@@ -256,7 +296,7 @@
             display: inline-block;
             transition: all 0.35s var(--ease);
             border-radius: 2px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
         .btn-secondary:hover {
             border-color: rgba(255,255,255,0.6);
@@ -298,7 +338,7 @@
             margin: 0 auto;
         }
         .section-label {
-            font-size: 0.68rem;
+            font-size: 0.72rem;
             letter-spacing: 0.3em;
             text-transform: uppercase;
             color: var(--gold);
@@ -388,6 +428,7 @@
         /* Team photo */
         .team-photo {
             width: 100%;
+            height: auto;
             aspect-ratio: 4/5;
             object-fit: cover;
             object-position: center top;
@@ -475,7 +516,7 @@
         .tag {
             border: 1px solid rgba(201,168,76,0.25);
             color: var(--gold);
-            font-size: 0.62rem;
+            font-size: 0.70rem;
             letter-spacing: 0.1em;
             padding: 0.3rem 0.85rem;
             text-transform: uppercase;
@@ -580,7 +621,7 @@
         }
         .c-body {}
         .c-label {
-            font-size: 0.62rem;
+            font-size: 0.70rem;
             letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--gold);
@@ -630,7 +671,7 @@
             border: 1px solid rgba(201,168,76,0.18);
             color: var(--white);
             padding: 0.85rem 1.1rem;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.88rem;
             outline: none;
             transition: border-color 0.3s;
@@ -641,6 +682,12 @@
         .form-group select:focus {
             border-color: var(--gold);
         }
+        .form-group input:focus-visible,
+        .form-group textarea:focus-visible,
+        .form-group select:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 3px;
+        }
         .form-group select option { background: var(--navy-mid); }
         .form-group textarea { height: 110px; resize: vertical; }
 
@@ -650,7 +697,7 @@
             color: var(--navy);
             border: none;
             padding: 1rem;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.72rem;
             font-weight: 700;
             letter-spacing: 0.18em;
@@ -685,7 +732,7 @@
             padding: 1.15rem 2rem;
             background: var(--gold);
             color: var(--navy);
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.82rem;
             font-weight: 700;
             letter-spacing: 0.14em;
@@ -707,7 +754,7 @@
         }
         .wa-note {
             text-align: center;
-            font-size: 0.65rem;
+            font-size: 0.70rem;
             letter-spacing: 0.12em;
             color: rgba(138,154,184,0.5);
             margin-top: 0.75rem;
@@ -771,6 +818,44 @@
         }
         .footer-social a:hover { color: var(--gold); border-color: var(--gold); }
 
+        /* ── WHATSAPP FLOATING CTA ── */
+        .wa-float {
+            position: fixed;
+            right: 1.5rem;
+            bottom: max(1.5rem, calc(env(safe-area-inset-bottom, 0px) + 1rem));
+            width: 3.5rem;
+            height: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--navy);
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            color: var(--gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+            z-index: 900;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s var(--ease), visibility 0.3s var(--ease), transform 0.3s var(--ease), border-color 0.3s;
+        }
+        .wa-float.wa-float-visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .wa-float:hover {
+            border-color: var(--gold-light);
+            transform: translateY(-3px);
+        }
+        .wa-float:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 3px;
+        }
+        .wa-float svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            flex-shrink: 0;
+        }
+
         /* ── SCROLL ANIMATIONS ── */
         .reveal {
             opacity: 0;
@@ -809,6 +894,42 @@
             nav { padding: 1.2rem 1.5rem; }
             nav.scrolled { padding: 0.9rem 1.5rem; }
             .nav-links { display: none; }
+            .nav-toggle { display: flex; }
+
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(7, 16, 31, 0.97);
+                backdrop-filter: blur(18px);
+                border-top: 1px solid rgba(201, 168, 76, 0.18);
+                border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+                padding: 0.5rem 1.5rem 1.5rem;
+            }
+            .nav-links.open li {
+                width: 100%;
+                border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+            }
+            .nav-links.open li:last-child {
+                border-bottom: none;
+                padding-top: 0.9rem;
+            }
+            .nav-links.open a {
+                display: block;
+                padding: 0.9rem 0;
+            }
+            .nav-links.open .nav-cta {
+                display: inline-block;
+                text-align: center;
+                padding: 0.7rem 1.4rem;
+                margin-top: 0.2rem;
+            }
 
             .section-wrap { padding: 5rem 1.5rem; }
             #inicio { padding: 6rem 1.5rem 4rem; }
@@ -829,12 +950,60 @@
 
             footer { padding: 2rem 1.5rem; }
             .footer-inner { flex-direction: column; text-align: center; gap: 1.2rem; }
+
+            .wa-float {
+                right: 1.1rem;
+                width: 3.25rem;
+                height: 3.25rem;
+            }
+            .wa-float svg { width: 1.35rem; height: 1.35rem; }
         }
 
         @media (max-width: 480px) {
             .hero-title { font-size: 2.8rem; }
             .proceso-steps { grid-template-columns: 1fr; }
+            .proceso-steps > *:last-child { grid-column: auto; }
             .stats-row { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* ── SKIP LINK ── */
+        .skip-link {
+            position: fixed;
+            top: -3rem;
+            left: 1rem;
+            z-index: 2000;
+            background: var(--gold);
+            color: var(--navy);
+            padding: 0.75rem 1.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: top 0.2s var(--ease);
+        }
+        .skip-link:focus {
+            top: 1rem;
+        }
+
+        /* ── REDUCED MOTION ── */
+        @media (prefers-reduced-motion: reduce) {
+            .pulse-dot {
+                animation: none;
+            }
+            .hero-scroll-hint {
+                animation: none;
+            }
+            .reveal,
+            .reveal-l,
+            .reveal-r,
+            .stagger > * {
+                transition: none;
+                opacity: 1;
+                transform: none;
+            }
+            .skip-link {
+                transition: none;
+            }
         }
     </style>
 </head>
@@ -844,12 +1013,19 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+<a class="skip-link" href="#inicio">Saltar al contenido</a>
+
 <!-- ── NAVIGATION ── -->
 <nav id="navbar">
     <a href="#inicio" class="nav-logo">
-        <img src="assets/Sabueso%20Legal/Logo%20SVG.png" alt="Sabueso Legal">
+        <img src="assets/Sabueso%20Legal/logo.webp" alt="Sabueso Legal" width="287" height="120">
     </a>
-    <ul class="nav-links">
+    <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Abrir menú" aria-controls="navLinks">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
         <li><a href="#nosotros">Nosotros</a></li>
         <li><a href="#areas">Áreas</a></li>
         <li><a href="#proceso">Proceso</a></li>
@@ -858,7 +1034,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
 
 <!-- ── HERO ── -->
-<section id="inicio">
+<section id="inicio" tabindex="-1">
     <div class="hero-bg"></div>
     <div class="hero-grid" id="heroGrid"></div>
     <div class="hero-lines"></div>
@@ -917,7 +1093,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
 
             <div class="nosotros-visual reveal-r">
-                <img src="assets/Sabueso%20Legal/foto-equipo.png" alt="Sabueso Legal" class="team-photo">
+                <img src="assets/Sabueso%20Legal/foto-equipo.webp" alt="Sabueso Legal" class="team-photo" width="1024" height="1024" loading="lazy">
             </div>
 
         </div>
@@ -936,7 +1112,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="areas-grid stagger">
             <div class="area-card">
                 <span class="area-num">01</span>
-                <span class="area-icon">⚖️</span>
+                <span class="area-icon" aria-hidden="true">⚖️</span>
                 <h3 class="area-title">Derecho Penal Patrimonial</h3>
                 <p class="area-desc">Representamos a víctimas de delitos que afectan directamente su patrimonio económico. Construimos estrategias jurídicas sólidas orientadas a la recuperación del daño y a la sanción efectiva de los responsables dentro del sistema penal colombiano.</p>
                 <div class="area-tags">
@@ -950,7 +1126,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <div class="area-card">
                 <span class="area-num">02</span>
-                <span class="area-icon">🔍</span>
+                <span class="area-icon" aria-hidden="true">🔍</span>
                 <h3 class="area-title">Fraude Financiero</h3>
                 <p class="area-desc">Área dedicada exclusivamente a la investigación y litigio en casos de fraude en el ámbito financiero. Actuamos con rapidez para proteger a nuestros clientes, rastrear el origen del daño y perseguir a los responsables por todas las vías legales disponibles.</p>
                 <div class="area-tags">
@@ -964,7 +1140,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <div class="area-card">
                 <span class="area-num">03</span>
-                <span class="area-icon">🏢</span>
+                <span class="area-icon" aria-hidden="true">🏢</span>
                 <h3 class="area-title">Acompañamiento Corporativo</h3>
                 <p class="area-desc">Asesoramos a empresas en la protección activa de su patrimonio frente a amenazas internas y externas. Diseñamos esquemas de prevención, detección temprana y respuesta jurídica ante conductas que pongan en riesgo sus activos o su estabilidad financiera.</p>
                 <div class="area-tags">
@@ -1031,35 +1207,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 <div class="contact-list">
                     <div class="contact-item">
-                        <span class="c-icon">📞</span>
+                        <span class="c-icon" aria-hidden="true">📞</span>
                         <div class="c-body">
                             <div class="c-label">Teléfono · WhatsApp</div>
                             <div class="c-value"><a href="tel:+573008633222">300 863 3222</a></div>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <span class="c-icon">📧</span>
+                        <span class="c-icon" aria-hidden="true">📧</span>
                         <div class="c-body">
                             <div class="c-label">Correo electrónico</div>
                             <div class="c-value"><a href="mailto:casos@sabuesolegal.com">casos@sabuesolegal.com</a></div>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <span class="c-icon">📍</span>
+                        <span class="c-icon" aria-hidden="true">📍</span>
                         <div class="c-body">
                             <div class="c-label">Ciudad</div>
                             <div class="c-value">Bogotá D.C., Colombia</div>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <span class="c-icon">🕐</span>
+                        <span class="c-icon" aria-hidden="true">🕐</span>
                         <div class="c-body">
                             <div class="c-label">Disponibilidad</div>
                             <div class="c-value">24 horas · 7 días a la semana</div>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <span class="c-icon">📸</span>
+                        <span class="c-icon" aria-hidden="true">📸</span>
                         <div class="c-body c-gold">
                             <div class="c-label">Instagram</div>
                             <div class="c-value"><a href="https://instagram.com/sabueso.legal" target="_blank">@sabueso.legal</a></div>
@@ -1093,17 +1269,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;">
                         <div class="form-row">
                             <div class="form-group">
-                                <label>Nombre completo</label>
-                                <input type="text" name="name" placeholder="Tu nombre" required>
+                                <label for="contact-name">Nombre completo</label>
+                                <input type="text" id="contact-name" name="name" placeholder="Tu nombre" required>
                             </div>
                             <div class="form-group">
-                                <label>Teléfono</label>
-                                <input type="tel" name="phone" placeholder="300 000 0000" required>
+                                <label for="contact-phone">Teléfono</label>
+                                <input type="tel" id="contact-phone" name="phone" placeholder="300 000 0000" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Área de consulta</label>
-                            <select name="area">
+                            <label for="contact-area">Área de consulta</label>
+                            <select id="contact-area" name="area">
                                 <option value="">Selecciona el área</option>
                                 <option>Derecho Penal Patrimonial</option>
                                 <option>Fraude Financiero</option>
@@ -1112,8 +1288,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Describe brevemente tu situación</label>
-                            <textarea name="message" placeholder="Cuéntanos lo que ocurrió..."></textarea>
+                            <label for="contact-message">Describe brevemente tu situación</label>
+                            <textarea id="contact-message" name="message" placeholder="Cuéntanos lo que ocurrió..."></textarea>
                         </div>
                         <button type="submit" class="form-submit" id="formBtn">Enviar consulta</button>
                     </form>
@@ -1128,7 +1304,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer>
     <div class="footer-inner">
         <div class="footer-logo">
-            <img src="assets/Sabueso%20Legal/Logo%20SVG.png" alt="Sabueso Legal" style="height:32px;width:auto;display:block;opacity:0.85;">
+            <img src="assets/Sabueso%20Legal/logo.webp" alt="Sabueso Legal" width="287" height="120" style="height:32px;width:auto;display:block;opacity:0.85;">
         </div>
         <p class="footer-copy">© 2026 Sabueso Legal · Bogotá D.C., Colombia · Todos los derechos reservados</p>
         <div class="footer-social">
@@ -1137,12 +1313,69 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 </footer>
 
+<!-- ── WhatsApp CTA flotante ── -->
+<a href="https://wa.me/573008633222?text=Hola%2C%20quiero%20consultar%20sobre%20mi%20caso."
+   target="_blank"
+   rel="noopener"
+   class="wa-float"
+   id="waFloat"
+   aria-label="Contactar por WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+</a>
+
 <script>
 // ── Nav scroll effect
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 70);
 }, { passive: true });
+
+// ── Mobile nav toggle
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+if (navToggle && navLinks) {
+    const closeMenu = () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Abrir menú');
+    };
+    const openMenu = () => {
+        navLinks.classList.add('open');
+        navToggle.setAttribute('aria-expanded', 'true');
+        navToggle.setAttribute('aria-label', 'Cerrar menú');
+    };
+    navToggle.addEventListener('click', () => {
+        const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+        if (isOpen) { closeMenu(); } else { openMenu(); }
+    });
+    navLinks.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMenu);
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
+            closeMenu();
+            navToggle.focus();
+        }
+    });
+}
+
+// ── WhatsApp floating CTA visibility
+const waFloat = document.getElementById('waFloat');
+const heroSection = document.getElementById('inicio');
+const contactoSection = document.getElementById('contacto');
+if (waFloat && heroSection && contactoSection) {
+    const updateWaFloat = () => {
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
+        const contactoTop = contactoSection.getBoundingClientRect().top;
+        const pastHero = heroBottom <= 0;
+        const beforeContacto = contactoTop > window.innerHeight * 0.5;
+        waFloat.classList.toggle('wa-float-visible', pastHero && beforeContacto);
+    };
+    window.addEventListener('scroll', updateWaFloat, { passive: true });
+    updateWaFloat();
+}
 
 // ── Parallax on hero grid
 const heroGrid = document.getElementById('heroGrid');
