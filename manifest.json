@@ -1,0 +1,20 @@
+{
+    "name": "Sabueso Legal",
+    "short_name": "Sabueso Legal",
+    "start_url": "./",
+    "display": "standalone",
+    "background_color": "#07101F",
+    "theme_color": "#07101F",
+    "icons": [
+        {
+            "src": "assets/Sabueso%20Legal/favicon-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/Sabueso%20Legal/favicon-180x180.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        }
+    ]
+}
